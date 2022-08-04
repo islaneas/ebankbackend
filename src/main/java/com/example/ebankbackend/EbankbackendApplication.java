@@ -6,10 +6,12 @@ import com.example.ebankbackend.enums.OperationType;
 import com.example.ebankbackend.repositories.BankAccountRepository;
 import com.example.ebankbackend.repositories.BankOperationRepository;
 import com.example.ebankbackend.repositories.CustomerRepository;
+import com.example.ebankbackend.services.BankService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.annotation.Transient;
 
 import java.util.Date;
 import java.util.UUID;
@@ -21,7 +23,26 @@ public class EbankbackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(EbankbackendApplication.class, args);
     }
+
     @Bean
+    CommandLineRunner commandLineRunner(BankService bankService) {
+        return args -> {
+Stream.of("Nassima","Meriem","Jad").forEach(name->{
+    Customer customer=new Customer();
+    customer.setName(name);
+    customer.setEmail(name+"gmail.com");
+    
+});
+        };
+    }
+    /*1er partie
+   @Bean
+    CommandLineRunner commandLineRunner(BankService bankService){
+        return args -> {
+            bankService.consulter();
+        };
+    }
+  //  @Bean
     CommandLineRunner star(CustomerRepository customerRepository,
                            BankAccountRepository bankAccountRepository,
                            BankOperationRepository accountOperationRepository) {
@@ -61,10 +82,10 @@ public class EbankbackendApplication {
                     accountOperation.setBankAccount(acc);
                     accountOperationRepository.save(accountOperation);
                 }
-                /*BankAccount bankAccount=
-                        bankAccountRepository.findById("0051db59-55d1-469b-a49a-4f0d8a080273").orElse(null);*/
+
+
             });
         };
     }
-
+*/
 }
